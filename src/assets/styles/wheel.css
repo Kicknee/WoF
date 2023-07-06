@@ -1,0 +1,82 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --wheelSize: 350px;
+  --PI: 3.14159265359;
+  --singlePartWidth: calc(2 * var(--PI) * var(--wheelSize) / 10);
+}
+
+.wheel {
+  width: var(--wheelSize);
+  height: var(--wheelSize);
+  background: black;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
+}
+.wheel-container {
+  position: relative;
+  width: var(--wheelSize);
+  height: var(--wheelSize);
+}
+.arrow {
+  content: "";
+  position: absolute;
+  top: -45px;
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  background-color: purple;
+  z-index: 3;
+  clip-path: polygon(0 0, 100% 0, 100% 10%, 60% 100%, 40% 100%, 0 10%);
+}
+.part {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - (var(--singlePartWidth) / 2));
+  width: var(--singlePartWidth);
+  height: 50%;
+  clip-path: polygon(50% 0, 25% 100%, 75% 100%);
+  transform-origin: top;
+  transform: rotate(calc(36deg * var(--i)));
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.part span {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  transform: rotate(90deg);
+  text-shadow: 0 0 5px black;
+  position: absolute;
+  bottom: 35%;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --wheelSize: 350px;
+  }
+  .part span {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 2100px) {
+  :root {
+    --wheelSize: 850px;
+  }
+
+  .part span {
+    font-size: 2.8rem;
+  }
+}
